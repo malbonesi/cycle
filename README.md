@@ -27,4 +27,3 @@ cycle(array, el => el.selected, 2) // 0
 cycle(array, el => el.selected, -2) // 2
 
 ```
-
