@@ -1,7 +1,7 @@
 {
-  "name": "cycle",
+  "name": "@malbonesi/cycle",
   "version": "1.0.0",
-  "description": "Cycle backward or forward through array",
+  "description": "Cycle backward or forward through an array",
   "source": "src/index.js",
   "main": "dist/cycle.js",
   "module": "dist/cycle.m.js",
