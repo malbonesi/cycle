@@ -1,9 +1,13 @@
 export default (a, fn, step = 1) => { 
   let index = a.findIndex(fn)
 
-  if(index === 0 && step < 0) {
-    index--
+  if(index == -1){
+    index = step < 1 ? 0 : -1
   }
 
-  return Math.abs(index + step) % a.length
+  if(step < 0) {
+    step = a.length + (step % a.length)
+  }
+
+  return (index + step) % a.length
 }

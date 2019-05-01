@@ -2,16 +2,20 @@ var test = require('tape')
 var cycle = require('../dist/cycle')
 
 test('cycle', t => {
-  const numbers = [{a:1}, {a:2, selected:true}, {a:3}]
+  for(let length = 1; length <= 4; length++){
 
-  t.equal(cycle(numbers, e => e.selected), 2, 'Cycles forward')
-  t.equal(cycle(numbers, e => e.selected, -1), 0, 'Cycles backward')
-  
-  t.equal(cycle(numbers, e => e.a == 3), 0, 'Cycles to beginning of array')
-  t.equal(cycle(numbers, e => e.a == 1, -1), 2, 'Cycles to end of array')
+    let array = Array.from({length})
 
-  t.equal(cycle(numbers, e => e.b), 0, 'Test not found forward starts at 0')
-  t.equal(cycle(numbers, e => e.b, -1), numbers.length - 1, 'Test not found backward starts at length - 1')
+    t.equal(cycle(array, (e,i) => i == 0), length > 1 ? 1 : 0 , 'Cycles forward')
+    t.equal(cycle(array, (e,i) => i == 1, -1), 0, 'Cycles backward')
+    
+    t.equal(cycle(array, (e,i) => i == length - 1), 0, 'Cycles to beginning of array')
+    t.equal(cycle(array, (e,i) => i == 0, -1), length - 1, 'Cycles to end of array')
 
- t.end()
+    t.equal(cycle(array, e => false), 0, 'Test not found forward starts at 0')
+    t.equal(cycle(array, e => false, -1), length - 1, 'Test not found backward starts at length - 1')
+
+  }
+
+  t.end()
 })
